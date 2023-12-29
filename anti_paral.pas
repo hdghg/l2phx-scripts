@@ -4,6 +4,7 @@ var
     skillId, skillLvl: Integer;
     position: Integer;
     objectId: Integer;
+    npcId: Integer;
 
     procedure Init; //will be called on script initialization
     begin
@@ -42,13 +43,13 @@ begin
         classId := ReadD(position + 8);
         case classId of
             32: begin
-                Whisper(objectId, nickName, 'class: Palus Knight');
+                Whisper(objectId, nickName, 'Palus Knight');
             end;
             33: begin
-                Whisper(objectId, nickName, 'class: Shillien Knight');
+                Whisper(objectId, nickName, 'Shillien Knight');
             end;
             106: begin
-                Whisper(objectId, nickName, 'class: Shillien Templar');
+                Whisper(objectId, nickName, 'Shillien Templar');
             end;
         end;
     end;
@@ -62,6 +63,10 @@ begin
                 Whisper(objectId, 'Shillien Knight', 'Uses skill: Lightning Strike. Lvl: ' + IntToStr(skillLvl));
             end;
         end;
+    end;
+
+    if (FromServer) and (pck[1]=#$8C) then begin // ServerObjectInfo
+        pck := ''
     end;
 
 end.
